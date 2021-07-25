@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Mesa {{mesa.numero}}{% endblock %}
+
+{% block mesa %}Mesa {{mesa.numero}}{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="card p-1">
+        {% if comanda %}
+        <p>Há comanda aberta</p>
+
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
