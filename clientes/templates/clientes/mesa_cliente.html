@@ -2,6 +2,15 @@
 
 {% block title %}Mesa {{mesa.numero}}{% endblock %}
 
+{% block mesa-cliente-url %}
+<a href="{{mesa.get_absolute_url}}"><i class="fas fa-home fa-2x"></i></a>
+{% endblock %}
+
+{% block cardapio-clientes-url %}
+<a href="{{mesa.get_menu_url}}" class="btn btn-dark mb-2">Ver Cardápio</a>
+{% endblock %}
+
+
 {% block mesa %}Mesa {{mesa.numero}}{% endblock %}
 
 
@@ -9,10 +18,63 @@
 <div class="container">
     <div class="card p-1">
         {% if comanda %}
-        <p>Há comanda aberta</p>
+            <h2 class="p-3">Minha comanda</h2>
+            <table class="table table-strip">
+                <thead>
+                    <tr>
+                        <th class="scope">Pedido</th>
+                        <th class="scope">Valor</th>
+                        <th class="scope">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if comanda.itempedido_set.all %}
+                        {% for status_pedido in pedidos %}
+                            {% for pedido in status_pedido %}
+                                <tr>
+                                    <td>
+                                        <p>{{pedido}}</p>
+                                        {% if pedido.obs %}
+                                            <a tabindex="0" class="btn btn-lg btn-outline-primary" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Obs.:" data-bs-content="{{pedido.obs}}">Obs</a>
+                                        {% endif %}
 
+                                    </td>
+                                    <td>{{pedido.preco}}</td>
+                                    <td>{{pedido.get_status_display}}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td>Nenhum pedido realizado</td>
+                            </tr>
+                    {% endif %}
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="table-secondary fw-bold">
+                        <td></td>
+                        <td>Total</td>
+                        <td>{{comanda.valor_total}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="#" class="btn btn-danger mb-2">Pedir conta</a>
+            {% else %}
+                <div class="alert alert-danger m-0" role="alert">
+                    <h2>Não há comanda para a mesa {{mesa.numero}}</h2>
+                </div>
         {% endif %}
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $("[data-bs-toggle = popover]").popover()
+    })
+</script>
 
 {% endblock %}

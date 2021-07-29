@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+{% block mesa-cliente-url %}
+<a href="{{mesa.get_absolute_url}}"><i class="fas fa-home fa-2x"></i></a>
+{% endblock %}
+
+{% block cardapio-clientes-url %}
+<a href="{{mesa.get_menu_url}}" class="btn btn-dark mb-2">Ver Cardápio</a>
+{% endblock %}
+
+{% block content %} 
+    <div class="container">
+        <div class="card p-3">
+            <div class="titulo-card">
+                <i class="fas fa-book-open fa-2x"></i>
+                {% for categoria in categorias %}
+                    <h1>{{categoria}}</h1>
+                    {% for item in categoria.itemcardapio_set.all %}
+                        {% if item.ativo %}
+                            <p>{{item}}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+                {% for item in itens_sem_categoria %}
+                    <p>{{item}}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

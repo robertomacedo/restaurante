@@ -19,6 +19,10 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <!-- <link rel="stylesheet" href="../static/css/base.css"> -->
 
+    {% block meta %}
+    
+    {% endblock %}
+
     <!-- Google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +34,8 @@
   <body>
       <header>
           <div class="header-container">
-              <a href="#"><i class="fas fa-home"></i></a>
+            {% block mesa-cliente-url %}{% endblock %}
+              
             <h2>{% block mesa %}{% endblock mesa %}</h2>
           </div>
 
@@ -48,7 +53,7 @@
           <nav class="navbar fixed-bottom navbar-light bg-light">
               <div class="container d-flex flex-column align-items-stretch">
                 <a href="#" class="btn btn-dark mb-2">Soliciar Atendimento</a>
-                <a href="#" class="btn btn-dark mb-2">Ver Cardápio</a>
+                {% block cardapio-clientes-url %}{% endblock %}
               </div>
 
           </nav>
