@@ -3,11 +3,15 @@
 {% block title %}Mesa {{mesa.numero}}{% endblock %}
 
 {% block mesa-cliente-url %}
-<a href="{{mesa.get_absolute_url}}"><i class="fas fa-home fa-2x"></i></a>
+
+    <a href="{{mesa.get_absolute_url}}"><i class="fas fa-home fa-2x"></i></a>
+
 {% endblock %}
 
-{% block cardapio-clientes-url %}
-<a href="{{mesa.get_menu_url}}" class="btn btn-dark mb-2">Ver Cardápio</a>
+{% block cardapio-cliente-url %}
+
+    <a href="{{ mesa.get_menu_url }}" class="btn btn-dark mb-2x">Ver Cardápio</a>
+
 {% endblock %}
 
 

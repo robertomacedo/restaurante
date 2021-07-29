@@ -35,13 +35,11 @@
       <header>
           <div class="header-container">
             {% block mesa-cliente-url %}{% endblock %}
-              
             <h2>{% block mesa %}{% endblock mesa %}</h2>
           </div>
 
       </header>
       <div class="pt-5 pb-5"></div>
-
       <main>
           {% block content %}
 
@@ -51,11 +49,10 @@
 
       <footer>
           <nav class="navbar fixed-bottom navbar-light bg-light">
-              <div class="container d-flex flex-column align-items-stretch">
-                <a href="#" class="btn btn-dark mb-2">Soliciar Atendimento</a>
-                {% block cardapio-clientes-url %}{% endblock %}
-              </div>
-
+            <div class="container d-flex flex-column align-items-stretch">
+              <a href="#" class="btn btn-dark mb-2">Soliciar Atendimento</a>
+              {% block cardapio-cliente-url %}{% endblock %}
+            </div>
           </nav>
       </footer>
 

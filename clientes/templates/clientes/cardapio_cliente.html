@@ -2,11 +2,11 @@
 
 
 {% block mesa-cliente-url %}
-<a href="{{mesa.get_absolute_url}}"><i class="fas fa-home fa-2x"></i></a>
+    <a href="{{mesa.get_absolute_url}}"><i class="fas fa-home fa-2x"></i></a>
 {% endblock %}
 
-{% block cardapio-clientes-url %}
-<a href="{{mesa.get_menu_url}}" class="btn btn-dark mb-2">Ver Cardápio</a>
+{% block cardapio-cliente-url %}
+    <a href="{{mesa.get_menu_url}}" class="btn btn-dark mb-2x">Ver Cardápio</a>
 {% endblock %}
 
 {% block content %} 
@@ -16,9 +16,9 @@
                 <i class="fas fa-book-open fa-2x"></i>
             </div>
             {% for categoria in categorias %}
-                <a class="categoria" data-bs-toggle="collapse" href="c-{{categoria.id}}" role="button" aria-expanded="false" aria-controls="c-{{categoria.id}}">
-                <h2>{{categoria}}</h2>
-                <i class="fas fa-chevron-right"></i>
+                <a class="categoria" data-bs-toggle="collapse" href="#c-{{categoria.id}}" role="button" aria-expanded="false" aria-controls="c-{{categoria.id}}">
+                    <h2>{{categoria}}</h2>
+                    <i class="fas fa-chevron-right"></i>
                 </a>
 
                 <div class="collapse" id="c-{{categoria.id}}">
@@ -32,7 +32,7 @@
             
             {% for item in itens_sem_categoria %}
                 <p>{{item}}</p>
-            {% endfor %
+            {% endfor %}
         </div>
     </div>
 
