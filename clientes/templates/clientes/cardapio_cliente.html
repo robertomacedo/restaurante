@@ -13,26 +13,56 @@
     <div class="container">
         <div class="card p-3">
             <div class="titulo-card">
-                <i class="fas fa-book-open fa-2x"></i>
+                <i class="fas fa-book-open fa-2x"> Cardápio</i>
             </div>
             {% for categoria in categorias %}
                 <a class="categoria" data-bs-toggle="collapse" href="#c-{{categoria.id}}" role="button" aria-expanded="false" aria-controls="c-{{categoria.id}}">
-                    <h2>{{categoria}}</h2>
+                    <h5>{{categoria}}</h5>
                     <i class="fas fa-chevron-right"></i>
                 </a>
 
                 <div class="collapse" id="c-{{categoria.id}}">
                     {% for item in categoria.itemcardapio_set.all %}
                         {% if item.ativo %}
-                            <p>{{item}}</p>
+                            <div class="item-cardapio">
+                                <div class="titulo-preco">
+                                    <p class="item-titulo">{{item}}</p>
+                                    <p><span class="item-valor">R$ {{item.preco}}</span></p>
+                                </div>
+                                {% if item.descricao %}
+                                    <p>{{item.descricao}}</p>
+                                {% endif %}
+                            </div>
+                            
                         {% endif %}
                     {% endfor %}
                 </div>
             {% endfor %}
             
-            {% for item in itens_sem_categoria %}
-                <p>{{item}}</p>
-            {% endfor %}
+            {% if itens in itens_sem_categoria %}
+                <a class="categoria" data-bs-toggle="collapse" href="#sem-categoria" role="button" aria-expanded="false" aria-controls="sem-categoria">
+                    <h5>Itens sem categoria</h5>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+
+                <div class="collapse" id="sem-categoria">
+                    {% for item in itens_sem_categoria %}
+                        {% if item.ativo %}
+                            <div class="item-cardapio">
+                                <div class="titulo-preco">
+                                    <p class="item-titulo">{{item}}</p>
+                                    <p><span class="item-valor">R$ {{item.preco}}</span></p>
+                                </div>
+                                {% if item.descricao %}
+                                    <p>{{item.descricao}}</p>
+                                {% endif %}
+                            </div>
+                            
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            
+            {% endif %}
         </div>
     </div>
 
